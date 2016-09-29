@@ -3,7 +3,7 @@ namespace :utils do
   task seed: :environment do
     
     # Cria 10 contatos aleatórios
-    10.times do |i|
+    100.times do |i|
       Contact.create!(name: Faker::Name.name, email: Faker::Internet.free_email, kind: Kind.all.sample, rmk: LeroleroGenerator.sentence([1,2,3].sample))
     end
     puts "Contatos importados!"

@@ -1,10 +1,12 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  # Exemplo de filtro. Antes de chamar as actions especificadas, vai chamar o método set_select_kinds
+  before_action :set_select_kinds, only: [:new, :edit, :update, :create]
 
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.order(:name).page(params[:page]).per(15)
   end
 
   # GET /contacts/1
@@ -18,13 +20,10 @@ class ContactsController < ApplicationController
     
     #build_ + model - Instancia o model "filho" do model "principal"
     @contact.build_address
-    
-    select_kinds
   end
 
   # GET /contacts/1/edit
   def edit
-    select_kinds
   end
 
   # POST /contacts
@@ -76,6 +75,10 @@ class ContactsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
+    end
+    
+    def set_select_kinds
+      select_kinds
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
