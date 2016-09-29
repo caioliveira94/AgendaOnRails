@@ -1,0 +1,4 @@
+"pt-BR":
+  messages:
+    confirm-delete: "Tem certeza que deseja excluir o item?"
+    list: "Lista de"

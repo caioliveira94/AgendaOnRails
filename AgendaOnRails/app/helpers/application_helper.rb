@@ -29,6 +29,7 @@ module ApplicationHelper
     ["Tocantins", "TO"]
   ]
   
+  # Método para popular um combo com array
   def select_estados_brasil(selecionado)
     options_for_select(ESTADOS_BRASILEIROS, selecionado)
   end

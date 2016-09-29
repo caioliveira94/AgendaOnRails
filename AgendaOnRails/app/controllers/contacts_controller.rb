@@ -15,7 +15,10 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+    
+    #build_ + model - Instancia o model "filho" do model "principal"
     @contact.build_address
+    
     select_kinds
   end
 
@@ -65,6 +68,7 @@ class ContactsController < ApplicationController
   end
 
   private
+    # Exemplo de método que retorna registro
     def select_kinds
       @kinds_options = Kind.all
     end
@@ -76,6 +80,7 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:name, :email, :kind_id, :rmk, address_attributes: [:street, :city, :state])
+      # model + _attributes - Permite receber os campos de outro model que esteja relacionado ao model principal
+      params.require(:contact).permit(:name, :email, :kind_id, :rmk, address_attributes: [:street, :city, :state], phone_attributes: [:id, :phone, :_destroy])
     end
 end

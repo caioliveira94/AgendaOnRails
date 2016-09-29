@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # resources - Gera 7 rotas basicas do CRUD para o modelo passado como parâmetro
   resources :phones
   resources :addresses
   resources :contacts
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   
   get 'home/index'
   
+  # Seta o controler#action inicial da aplicação
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
